@@ -1,0 +1,11 @@
+<div>
+    <h2>Dashboard</h2>
+    <hr>
+    
+    <div class="alert alert-success">
+        <strong>Selamat Datang, <%= user.nama %>!</strong> <br>
+        Anda login sebagai <strong><%= user.role === 'admin' ? 'Admin' : 'Wakil Dekan' %></strong>.
+    </div>
+
+    <p>Gunakan menu di sebelah kiri untuk melakukan aktivitas sesuai dengan hak akses Anda pada sistem pengadaan logistik ini.</p>
+</div>

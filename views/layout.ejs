@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Pengadaan Logistik</title>
+    <link rel="stylesheet" href="https://unpkg.com/basecoat/css/basecoat.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row" style="min-height: 100vh; padding-top: 20px;">
+            
+            <aside class="col-3" style="border-right: 1px solid #ccc;">
+                <h3>Logistik App</h3>
+                <hr>
+                
+                <% if (typeof user !== 'undefined' && user.role === 'admin') { %>
+                    <a href="/dashboard" class="btn btn-block text-left mb-1">Dashboard</a>
+                    <a href="/pengadaan" class="btn btn-block text-left mb-1">Kelola Permintaan</a>
+                    <a href="/po" class="btn btn-block text-left mb-1">Purchase Order</a>
+                    <a href="/stok" class="btn btn-block text-left mb-1">Penerimaan Stok</a>
+                <% } else if (typeof user !== 'undefined' && user.role === 'wadir') { %>
+                    <a href="/dashboard" class="btn btn-block text-left mb-1">Dashboard</a>
+                    <a href="/pengadaan" class="btn btn-block text-left mb-1">Persetujuan Pengadaan</a>
+                <% } else { %>
+                    <a href="/" class="btn btn-block text-left">Login</a>
+                <% } %>
+            </aside>
+
+            <main class="col-9">
+                <div class="text-right mb-3">
+                    <% if (typeof user !== 'undefined') { %>
+                        <form action="/auth/logout" method="POST" style="display:inline;">
+                            <button type="submit" class="btn btn-sm">Logout (<%= user.nama %>)</button>
+                        </form>
+                    <% } %>
+                </div>
+                
+                <%- body %>
+                
+            </main>
+        </div>
+    </div>
+</body>
+</html>
