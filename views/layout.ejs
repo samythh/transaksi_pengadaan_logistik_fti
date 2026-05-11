@@ -3,43 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Pengadaan Logistik</title>
+    <title>Dashboard Logistik</title>
     <link rel="stylesheet" href="https://unpkg.com/basecoat/css/basecoat.min.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="row" style="min-height: 100vh; padding-top: 20px;">
+    <div class="app-wrapper">
+        
+        <aside class="sidebar">
+            <h3 class="sidebar-brand">📦 Logistik App</h3>
             
-            <aside class="col-3" style="border-right: 1px solid #ccc;">
-                <h3>Logistik App</h3>
-                <hr>
-                
-                <% if (typeof user !== 'undefined' && user.role === 'admin') { %>
-                    <a href="/dashboard" class="btn btn-block text-left mb-1">Dashboard</a>
-                    <a href="/pengadaan" class="btn btn-block text-left mb-1">Kelola Permintaan</a>
-                    <a href="/po" class="btn btn-block text-left mb-1">Purchase Order</a>
-                    <a href="/stok" class="btn btn-block text-left mb-1">Penerimaan Stok</a>
-                <% } else if (typeof user !== 'undefined' && user.role === 'wadir') { %>
-                    <a href="/dashboard" class="btn btn-block text-left mb-1">Dashboard</a>
-                    <a href="/pengadaan" class="btn btn-block text-left mb-1">Persetujuan Pengadaan</a>
-                <% } else { %>
-                    <a href="/" class="btn btn-block text-left">Login</a>
-                <% } %>
-            </aside>
+            <% if (typeof role !== 'undefined' && (role === 'Admin' || role === 'admin')) { %>
+                <a href="/dashboard" class="nav-link">🏠 Dashboard</a>
+                <a href="/pengadaan" class="nav-link">📝 Kelola Permintaan</a>
+                <a href="/po" class="nav-link">📄 Purchase Order</a>
+                <a href="/stok" class="nav-link">📦 Penerimaan Stok</a>
+            <% } %>
+        </aside>
 
-            <main class="col-9">
-                <div class="text-right mb-3">
-                    <% if (typeof user !== 'undefined') { %>
-                        <form action="/auth/logout" method="POST" style="display:inline;">
-                            <button type="submit" class="btn btn-sm">Logout (<%= user.nama %>)</button>
-                        </form>
-                    <% } %>
+        <div class="main-panel">
+            
+            <header class="topbar">
+                <div style="color: #64748b; font-weight: 500;">
+                    Sistem Pengadaan Logistik
                 </div>
-                
+                <div>
+                    <span style="margin-right: 15px; color: #334155; font-weight: 600;">
+                        Hai, <%= typeof nama !== 'undefined' ? nama : 'User' %>!
+                    </span>
+                </div>
+            </header>
+            
+            <main class="content-area">
                 <%- body %>
-                
             </main>
+
         </div>
+        
     </div>
 </body>
 </html>

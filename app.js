@@ -1,11 +1,14 @@
 require('dotenv').config();
 const express = require('express');
+const expressLayouts = require('express-ejs-layouts');
 const session = require('express-session');
 const path = require('path');
 
 const indexRouter = require('./routes/index');
 
 const app = express();
+app.use(expressLayouts);
+app.set('layout', 'layout');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
