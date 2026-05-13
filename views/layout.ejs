@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIP Unand | Sistem Pengadaan</title>
+    <link rel="stylesheet" href="https://unpkg.com/basecoat/css/basecoat.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="app-wrapper">
+
+        <aside class="sidebar">
+            <h3 class="sidebar-brand">SIP Unand</h3>
+
+            <a href="/dashboard" class="nav-link">🏠 Dashboard</a>
+
+            <% if (typeof role !== 'undefined' && (role === 'Admin' || role === 'admin')) { %>
+                <a href="/pengadaan" class="nav-link">📝 Kelola Permintaan</a>
+                <a href="/po" class="nav-link">📄 Purchase Order</a>
+                <a href="/stok" class="nav-link">📦 Penerimaan Stok</a>
+            <% } else if (typeof role !== 'undefined' && (role === 'Wakil Dekan' || role === 'wadir')) { %>
+                <a href="/pengadaan" class="nav-link">✅ Persetujuan Pengadaan</a>
+            <% } %>
+        </aside>
+
+        <div class="main-panel">
+
+            <header class="topbar">
+                <div style="color: #64748b; font-weight: 500;">
+                    Sistem Pengadaan Logistik
+                </div>
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <span style="color: #334155; font-weight: 600;">
+                        Hai, <%= typeof nama !== 'undefined' ? nama : 'User' %>!
+                    </span>
+                    <a href="/logout" class="btn-logout">🚪 Logout</a>
+                </div>
+            </header>
+
+            <main class="content-area">
+                <%- body %>
+            </main>
+
+        </div>
+
+    </div>
+</body>
+</html>
