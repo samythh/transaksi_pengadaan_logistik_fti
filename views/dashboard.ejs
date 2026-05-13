@@ -1,15 +1,15 @@
 <div>
     <h2 class="mb-3">Dashboard Utama</h2>
-    
+
     <div class="card mb-4 hero-card">
         <h3 class="mt-0 text-dark">
-            Selamat Datang, <%= typeof nama !== 'undefined' ? nama : 'Pengguna' %>! 👋
+            Selamat Datang, <%= typeof nama !== 'undefined' ? nama : 'Pengguna' %>! 
         </h3>
         <p class="mb-0 text-md">
-            Anda saat ini login dengan hak akses sebagai 
+            Anda saat ini login dengan hak akses sebagai
             <span class="badge badge-primary text-sm">
                 <%= typeof role !== 'undefined' ? role : '-' %>
-            </span>. 
+            </span>.
             <br>
             Semua aktivitas pengadaan logistik dan operasional Anda akan direkam oleh sistem.
         </p>
@@ -19,9 +19,9 @@
 
     <h4 class="mb-3">Akses Cepat Modul</h4>
     <div class="row">
-        
+
         <% if (typeof role !== 'undefined' && (role === 'Admin' || role === 'admin')) { %>
-            
+
             <div class="col-4">
                 <div class="card text-center" style="padding: 20px;">
                     <h1 class="card-icon">📝</h1>
@@ -50,7 +50,7 @@
             </div>
 
         <% } else if (typeof role !== 'undefined' && (role === 'Wakil Dekan' || role === 'wadir')) { %>
-            
+
             <div class="col-4">
                 <div class="card text-center card-highlight" style="padding: 20px;">
                     <h1 class="card-icon">✅</h1>

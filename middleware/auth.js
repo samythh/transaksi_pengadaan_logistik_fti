@@ -7,14 +7,16 @@ module.exports = {
         res.redirect('/login');
     },
 
-    // Implementasi ACL untuk membatasi akses berdasarkan role (Admin/Wakil Dekan)
+    // membatasi akses berdasarkan role (Admin / Wakil Dekan)
     checkRole: (role) => {
         return (req, res, next) => {
             if (req.session.user && req.session.user.role === role) {
                 return next();
             }
-            // Memberikan respon status 403 jika role tidak sesuai dengan syarat akses
-            res.status(403).send('Forbidden: Anda tidak memiliki akses untuk fitur ini.');
+            res.status(403).render('403', {
+                nama: req.session.user ? req.session.user.name : 'User',
+                role: req.session.user ? req.session.user.role : null,
+            });
         };
     }
 };
