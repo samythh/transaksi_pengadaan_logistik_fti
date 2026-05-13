@@ -5,7 +5,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif;
-    background-color: #f4f7f6; /* Warna abu-abu terang khas dashboard */
+    background-color: #f4f7f6; 
     color: #333;
 }
 
@@ -17,7 +17,7 @@ body {
 /* --- SIDEBAR KIRI --- */
 .sidebar {
     width: 260px;
-    background-color: #1e293b; /* Warna gelap modern */
+    background-color: #1e293b; 
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -47,10 +47,10 @@ body {
 .nav-link:hover {
     background-color: #334155;
     color: #ffffff;
-    padding-left: 30px; /* Efek geser saat disentuh */
+    padding-left: 30px; 
 }
 
-/* --- PANEL KANAN (HEADER & KONTEN) --- */
+/* ---  Header & Konten --- */
 .main-panel {
     flex: 1;
     display: flex;
@@ -72,7 +72,7 @@ body {
     overflow-y: auto;
 }
 
-/* --- KARTU & BASECOAT MODIFIKASI --- */
+/* --- Card & Modifikasi Basecoat --- */
 .card {
     background: #ffffff;
     border-radius: 8px;
@@ -83,7 +83,7 @@ body {
 }
 
 .card:hover {
-    transform: translateY(-3px); /* Efek melayang saat disentuh */
+    transform: translateY(-3px); 
     box-shadow: 0 8px 15px rgba(0,0,0,0.05);
 }
 
@@ -99,4 +99,25 @@ body {
 .card-icon {
     font-size: 45px;
     margin-bottom: 15px;
+}
+
+.btn-logout {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 16px;
+    background-color: #fff;
+    color: #dc2626;
+    border: 1.5px solid #fca5a5;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+.btn-logout:hover {
+    background-color: #dc2626;
+    color: #fff;
+    border-color: #dc2626;
 }

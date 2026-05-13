@@ -1,40 +1,30 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db');
+const { isLoggedIn, checkRole } = require('../middleware/auth');
 
 router.get('/', (req, res) => {
-  res.send('Sistem Informasi Pengadaan Barang — Kelompok B09');
+  if (req.session.user) {
+    return res.redirect('/dashboard');
+  }
+  res.redirect('/login');
 });
 
-router.get('/dashboard', async (req, res) => {
-  try {
-    const userId = req.session.userId;
-    if (!userId) {
-      return res.send('Silakan login terlebih dahulu');
-    }
-    const [rows] = await db.query(
-      `SELECT u.name, r.name as role 
-       FROM users u
-       LEFT JOIN model_has_roles mhr ON u.id = mhr.model_id
-       LEFT JOIN roles r ON mhr.role_id = r.id
-       WHERE u.id = ?`,
-      [userId]
-    );
-    const user = rows[0] || { name: 'Pengguna', role: 'Admin' };
+// Hanya user yang sudah login yang bisa akses dashboard
+router.get('/dashboard', isLoggedIn, (req, res) => {
+  res.render('dashboard', {
+    nama: req.session.user.name,
+    role: req.session.user.role,
+  });
+});
 
-    res.render('dashboard', {
-      role: user.role || 'Admin',
-      nama: user.name,
-    });
-  } catch (error) {
-    console.error('DB error:', error);
-    // Fallback ke data statis saat database error
-    res.render('dashboard', {
-      role: 'Admin',
-      nama: 'Test User (DB Error)',
-    });
-  }
+// hanya Admin yang boleh akses Purchase Order
+router.get('/po', isLoggedIn, checkRole('Admin'), (req, res) => {
+  res.send('Modul Purchase Order, akses ACL berhasil.');
+});
+
+// hanya Admin yang boleh akses Stok
+router.get('/stok', isLoggedIn, checkRole('Admin'), (req, res) => {
+  res.send('Modul Stok, akses ACL berhasil.');
 });
 
 module.exports = router;
-
